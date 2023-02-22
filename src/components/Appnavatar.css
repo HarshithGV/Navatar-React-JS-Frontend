@@ -1,0 +1,47 @@
+p {
+    text-align: end;
+    margin: 0rem 0rem;
+    text-decoration: none;
+    background-color: black;
+    padding:2rem 5rem;
+    color: #ffff;
+
+    }
+   
+   .Title {
+        text-align: left;
+    }
+select {
+    width: 50%;
+    display: inline-flex;
+    position: relative;
+    padding: 1rem;
+    border: 2px solid #8b7e7b75;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+button {
+    padding:0.75rem 1rem;
+    font-size: 1rem;
+    background: blue;
+    color:#ffff;
+    font-weight: 700;
+    border: 0px solid;
+} 
+
+Link {
+    text-decoration: none;
+    color: #ffff; 
+}
+nav {
+    background-color: #111164;
+}
+#nav-title {
+    color: #ffff;
+    font-weight:600;
+}
+#nav {
+    color: #ffff;
+    text-align: end;
+}
