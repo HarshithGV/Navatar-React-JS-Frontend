@@ -32,14 +32,14 @@ function App() {
     <h1>Please Select Hospital</h1>
     <form onSubmit={handleSubmit}>
     <select onChange={handleSelect} required>
-    <option>Choose Hospital</option>
+<option>Choose Hospital</option>
         {
            
             values.map((opts,i)=><option key={i} value={opts.company_id}>{opts.company_name}</option>)
         }
     </select>
     <h1>{options}</h1>
-    <Link to="/Navatar"><button style={{borderRadius:"0.75rem"}} type="submit" disabled={!isOptionSelected}>Submit</button></Link>
+    <Link to="/Navatar"><button style={{borderRadius:"0.75rem"}} type="submit" >Submit</button></Link>
     </form>
       </div>
   );

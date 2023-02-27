@@ -23,7 +23,7 @@ function App() {
     history.push("/Hospital");
   };
   const handleSelect = (e) => {
-    setOptions(e.target.value);
+    setOptions(e.target.value[0]);
     setIsOptionSelected(true);
   };
   
@@ -33,13 +33,15 @@ function App() {
     <form onSubmit={handleSubmit}>
     <select onChange={handleSelect} required>
     <option>Choose City</option>
+    
+  
         {
            
             values.map((opts,i)=><option key={i} value={opts.company_id}>{opts.city_name}</option>)
         }
     </select>
     <h1>{options}</h1>
-    <Link to="/Hospital"><button style={{borderRadius:"0.75rem"}} type="submit" disabled={!isOptionSelected}>Submit</button></Link>
+    <Link to="/Hospital"><button style={{borderRadius:"0.75rem"}} type="submit">Submit</button></Link>
     </form>
       </div>
   );
