@@ -36,7 +36,7 @@ function App() {
        </h2>
        
       ))}
-      <Link to="https://pages.razorpay.com/navatar1"><button style={{borderRadius:"0.75rem"}} type="submit">PAY</button></Link>
+      <Link to="/Agora"><button style={{borderRadius:"0.75rem"}} type="submit">PAY</button></Link>
       
     
       </div>
