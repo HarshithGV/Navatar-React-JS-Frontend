@@ -6,6 +6,7 @@ const App = () => {
   const [localStream, setLocalStream] = useState(null);
   const [channel, setChannel] = useState('');
   const [isJoined, setIsJoined] = useState(false);
+  const [isHost, setIsHost] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const App = () => {
   }, []);
 
   const joinChannel = async () => {
-    const token = '007eJxTYLD99K/n5adffx7+Wz+5yq1X8YRpDd/JkD9p+cY7PmXfn7tAgSHZ0sgkKcUsLcnUPMnEJMnQwsAy2cDcxCzJ3MLC3DTFQimdNaUhkJFBV0+GmZEBAkF8dga/xLLEksQiBgYA8JEikA=='; // or generate a token server-side
+    const token = '007eJxTYAg+tcVrj9/L1gvZfKzt0zmjn0huevIjuWXNjpZMyb699ooKDMmWRiZJKWZpSabmSSYmSYYWBpbJBuYmZknmFhbmpikWVmWcKQ2BjAx/qhKYGRkgEMRnZ/BLLEssSSxiYAAAs7YgEg=='; // or generate a token server-side
     const uid = null; // or generate a unique user ID client-side
 
     const stream = AgoraRTC.createStream({
@@ -52,6 +53,10 @@ const App = () => {
     }
   }, [localStream]);
 
+  const onRoleChange = (event) => {
+    setIsHost(event.target.value === 'host');
+  };
+
   return (
     <div>
       {!isJoined && (
@@ -62,6 +67,16 @@ const App = () => {
             onChange={(e) => setChannel(e.target.value)}
             placeholder="Enter meeting code"
           />
+          <br />
+          <label>
+            <input type="radio" name="role" value="audience" onChange={onRoleChange} checked={!isHost} />
+            Audience
+          </label>
+          <label>
+            <input type="radio" name="role" value="host" onChange={onRoleChange} checked={isHost} />
+            Host
+          </label>
+          <br />
           <button onClick={joinChannel}>Join meeting</button>
         </>
       )}
@@ -70,6 +85,7 @@ const App = () => {
         <>
           <button onClick={leaveChannel}>Leave meeting</button>
           <div>
+            {isHost && <div>You are the host.</div>}
             <video ref={videoRef} autoPlay />
           </div>
         </>
