@@ -23,7 +23,7 @@ export default function App() {
       <Routes>
       <Route path="/" element={<Layout />}>
       <Route index element={<Doctorlogin />}/>
-      <Route path="/home" element={<Home />}/>
+      <Route path="/Home" element={<Home />}/>
       <Route path="/hospital" element={<Hospital />}/>
       <Route path="/navatar" element={<Navatar />}/> 
       <Route path="/timeslots" element={<Timeslots />}/> 

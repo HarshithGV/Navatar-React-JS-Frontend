@@ -12,7 +12,7 @@ const [bookingDate, setInput1] = useState(new URLSearchParams(location.search).g
 
   useEffect(() => {
   
-    fetch(`http://navatarbe-env.eba-drviydr6.us-east-2.elasticbeanstalk.com/viewTimes?bookingDate=${bookingDate}&currentDate=${currentDate}`)
+    fetch(`https://navatar.sangamone.com/viewTimes?bookingDate=${bookingDate}&currentDate=${currentDate}`)
       .then((response) => response.json())
       .then((Actualdata) => {
         setTimes(Actualdata);

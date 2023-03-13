@@ -5,7 +5,7 @@ function App() {
   const [data, setData] = useState([]);
 
   const fetchData = () => {
-    fetch(`http://navatarbe-env.eba-drviydr6.us-east-2.elasticbeanstalk.com/viewTarrif`)
+    fetch(`https://navatar.sangamone.com/viewTarrif`)
       .then((response) => response.json())
       .then((actualData) => {
         console.log(actualData);

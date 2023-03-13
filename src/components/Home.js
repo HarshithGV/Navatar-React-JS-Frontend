@@ -12,7 +12,7 @@ function App() {
  
 
   useEffect(() => {
-    fetch("http://navatarbe-env.eba-drviydr6.us-east-2.elasticbeanstalk.com/viewCities").then((data) => data.json()).then((val) => setValues(val))
+    fetch("https://navatar.sangamone.com/viewCities").then((data) => data.json()).then((val) => setValues(val))
   }, [])
   console.log(values,"values")
 

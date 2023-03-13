@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 function LoginForm() {
@@ -17,25 +16,26 @@ function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Form submitted");
+    console.log("username: ", username);
+    console.log("password: ", password);
     try {
       const response = await axios.post(
-        "http://navatarbe-env.eba-drviydr6.us-east-2.elasticbeanstalk.com/DoctorLogin",
+        "https://navatar.sangamone.com/DoctorLogin",
         {
           username: username,
           password: password,
         }
       );
-      console.log(response.data);
+      console.log("response: ", response.data);
       if (response.status === 200 && response.data.token) {
-        console.log("Login successful"); // Add this line
-        // Save the token to the local storage
         localStorage.setItem("token", response.data.token);
-        // Redirect to the home page
+        navigate("/Home");
+      } else {
         navigate("/Home");
       }
     } catch (error) {
       console.error(error);
-      setErrorMessage("An error occurred. Please try again later.");
+      setErrorMessage("Invalid username or password.");
     }
   };
 
@@ -44,27 +44,31 @@ function LoginForm() {
       {errorMessage && <div>{errorMessage}</div>}
       <div>
         <h1>Doctor Login</h1>
-        <label>Username:</label>
+ 
         <input
           type="text"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
+          placeholder="Username"
           required
         />
       </div>
+      <br></br>
       <div>
-        <label>Password:</label>
+        
         <input
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
+          placeholder="password"
           required
         />
       </div>
-    <Link to="/Home">  <button type="submit" disabled={!isValid}>
+      <br></br>
+     <button to="/Home" type="submit" disabled={!isValid}>
         Login
       </button>
-      </Link>
+   
     </form>
   );
 }

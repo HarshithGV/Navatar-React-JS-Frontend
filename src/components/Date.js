@@ -10,7 +10,7 @@ function App() {
   const history = useNavigate();
 
   useEffect(() => {
-    fetch("http://navatarbe-env.eba-drviydr6.us-east-2.elasticbeanstalk.com/viewDates")
+    fetch("https://navatar.sangamone.com/viewDates")
       .then((data) => data.json())
       .then((val) => setValues(val));
   }, []);
