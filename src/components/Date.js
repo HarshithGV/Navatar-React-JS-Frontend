@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
-import Timeslots from "./Timeslots";
+import { setSelectedDate } from './selectedDate';
 
 function App() {
   const [values, setValues] = useState([]);
@@ -28,6 +28,7 @@ function App() {
   const handleSelect = (e) => {
     setOptions(e.target.value);
     setIsOptionSelected(true);
+    setSelectedDate(e.target.value);
   };
 
   return (

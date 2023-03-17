@@ -36,7 +36,7 @@ function App() {
        </h2>
        
       ))}
-      <Link to="/Agora"><button style={{borderRadius:"0.75rem"}} type="submit">PAY</button></Link>
+      <Link to="/Timer"><button style={{borderRadius:"0.75rem"}} type="submit">PAY</button></Link>
       
     
       </div>

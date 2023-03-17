@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Outlet, Link} from "react-router-dom";
-
+import { setSelectedNavatar } from './selectedNavatar';
 
 function App() {
    
@@ -25,13 +25,14 @@ function App() {
   const handleSelect = (e) => {
     setOptions(e.target.value);
     setIsOptionSelected(true);
+    setSelectedNavatar(e.target.value);
   };
 
   return (
     <div className="App">
     <h1>Please Select Navatar</h1>
     <form onSubmit={handleSubmit}>
-    <select onChange={handleSelect} required>
+    <select value={options} onChange={handleSelect} required>
     <option>Choose Navatar</option>
         {
            

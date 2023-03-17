@@ -13,7 +13,7 @@ import Meeting from "./components/Meeting";
 import Timervalue from "./components/Timervalue";
 import Agora from "./components/Agora";
 import BookingList from "./components/BookingList";
-
+import Timer from "./components/Timer";
 
 export default function App() {
   return (
@@ -33,6 +33,7 @@ export default function App() {
       <Route path="/timervalue" element={<Timervalue />}/>
       <Route path="/agora" element={<Agora />}/>
       <Route path="/bookinglist" element={<BookingList />}/>
+      <Route path="/timer" element={<Timer />}/>
         </Route>
       </Routes>
     </BrowserRouter>
