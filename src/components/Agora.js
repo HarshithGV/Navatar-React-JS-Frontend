@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div style={{textAlign:"center"}}><br/>
-      <Link to="https://react-ts-agora-uikit.vercel.app/">
+      <Link to="/VideoRoom">
         <button
           disabled={remainingTime !== 'Booking time has passed'}
           style={{backgroundColor: buttonBackgroundColor, color: buttonFontColor, borderRadius:"0.5rem", border:borderColor}}

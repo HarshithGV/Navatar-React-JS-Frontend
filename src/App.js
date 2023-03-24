@@ -9,11 +9,12 @@ import Navatar from "./components/Navatar";
 import Timeslots from "./components/Timeslots";
 import Payment from "./components/Payment";
 import Date from "./components/Date";
-import Meeting from "./components/Meeting";
+
 import Timervalue from "./components/Timervalue";
 import Agora from "./components/Agora";
 import BookingList from "./components/BookingList";
 import Timer from "./components/Timer";
+import VideoRoom from "./components/VideoRoom";
 
 export default function App() {
   return (
@@ -29,11 +30,12 @@ export default function App() {
       <Route path="/timeslots" element={<Timeslots />}/> 
       <Route path="/payment" element={<Payment />}/>   
       <Route path="/date" element={<Date />}/>   
-      <Route path="/meeting" element={<Meeting />}/>
+      
       <Route path="/timervalue" element={<Timervalue />}/>
       <Route path="/agora" element={<Agora />}/>
       <Route path="/bookinglist" element={<BookingList />}/>
       <Route path="/timer" element={<Timer />}/>
+      <Route path="/videoRoom" element={<VideoRoom />}/>
         </Route>
       </Routes>
     </BrowserRouter>
