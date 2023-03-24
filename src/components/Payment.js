@@ -17,6 +17,8 @@ function loadScript(src){
 function App() { // changed the function name to start with an uppercase letter
 
     const [tariffData, setTariffData] = useState([]);
+    const [order_Id, setOrder_ID] = useState('');
+    const [amount_value, setAmount_value] = useState('');
 
     async function displayRazorpay(amount) {
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
@@ -24,19 +26,19 @@ function App() { // changed the function name to start with an uppercase letter
             alert('Razorpay SDK failed to load. Are you online?')
             return
         }
-        const data = await fetch('http://localhost:1337/razorpay', { method: 'POST' }).then((t) =>
+        const data = await fetch('https://navatar.sangamone.com/viewTarrif2', { method: 'POST' }).then((t) =>
             t.json()
         )
 
-        console.log(data)
+        console.log(data[0].body)
         const options = {
             key: 'rzp_live_xSgdnHwFk1KkZ8',
-            amount: data.amount.toString(),
-            currency: data.currency,
+            amount: amount_value,
+            currency: 'INR',
             name: 'Navatar',
             description: 'Payment for booking Navatar',
             image: 'https://example.com/your_logo',
-            order_id: data.id,
+            order_id: order_Id,
             handler: function (response) {
                 alert(response.razorpay_payment_id);
             },
@@ -52,11 +54,13 @@ function App() { // changed the function name to start with an uppercase letter
 
     useEffect(() => { // moved useEffect to outside of displayRazorpay function
         const fetchData = () => {
-            fetch(`https://navatar.sangamone.com/viewTarrif`)
+            fetch(`https://navatar.sangamone.com/viewTarrif2`)
                 .then((response) => response.json())
                 .then((actualData) => {
                     console.log(actualData);
                     setTariffData(actualData);
+                    setOrder_ID(actualData[0].body);
+                    setAmount_value(actualData[0].statusCodeValue);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -71,7 +75,10 @@ function App() { // changed the function name to start with an uppercase letter
             <h2>Please pay the following charges to book your Navatar.</h2>
             {tariffData.map((item, index) => (
                 <div key={index}>
-                    <h2>{item.currency} {item.rate_per_slot}</h2>
+                    {/* <h2>{item.currency} {item.rate_per_slot}</h2> */}
+                    <h2>{item.body}</h2>
+                    <h3>{order_Id}</h3>
+                    <h3>{amount_value}</h3>
                     <button
                         style={{ borderRadius: "0.75rem" }}
                         type="submit"
