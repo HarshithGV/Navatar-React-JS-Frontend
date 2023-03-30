@@ -47,7 +47,7 @@ function BookingForm() {
     <div style={{textAlign: "center"}}>
 
     <h3>You have selected navatar_id: {navatarId}<br/>Your Booking Date: {bookingDate}<br/>Your Navatar Call Booked Time:{bookedTimeSlot}:00</h3>
-     <Link to="/Agora"> <button onClick={handleClick}>Book Now</button></Link>
+     <Link to="/Agora"> <button onClick={handleClick}>Next</button></Link>
     </div>
   );
 }

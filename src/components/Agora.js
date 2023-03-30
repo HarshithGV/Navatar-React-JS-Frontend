@@ -59,7 +59,7 @@ function App() {
         </button>
       </Link>
       <br/><br/>
-      <div><h5>Remaining time: {remainingTime}</h5></div>
+      <div><h1> {remainingTime}</h1></div>
       <div><h5>Booking Date: {bookingDate}</h5></div>
       <div><h5>Booking Time: {bookedTimeSlot}</h5></div>
     </div>
