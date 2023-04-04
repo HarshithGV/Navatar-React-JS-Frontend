@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Appnavatar.css";
+import backgroundImage from './img/hero-bg.jpg';
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -40,6 +42,10 @@ function LoginForm() {
   };
 
   return (
+
+<div>
+<div className="my-component">
+      
     <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
       {errorMessage && <div>{errorMessage}</div>}
       <div>
@@ -65,11 +71,13 @@ function LoginForm() {
         />
       </div>
       <br></br>
-     <button to="/Home" type="submit" disabled={!isValid}>
+     <button style={{borderRadius: "1rem"}} to="/Home" type="submit" disabled={!isValid}>
         Login
       </button>
    
     </form>
+    </div>
+    </div>
   );
 }
 

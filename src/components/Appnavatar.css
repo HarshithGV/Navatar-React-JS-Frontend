@@ -28,6 +28,7 @@ button {
     color:#ffff;
     font-weight: 700;
     border: 0px solid;
+    
 } 
 
 Link {
@@ -35,7 +36,9 @@ Link {
     color: #ffff; 
 }
 nav {
-    background-color: #111164;
+    background-color: #054986;
+    padding: 1rem;
+    margin-bottom: 5rem;
 }
 #nav-title {
     color: #ffff;
@@ -45,3 +48,12 @@ nav {
     color: #ffff;
     text-align: end;
 }
+
+body {
+    background-image: url("./img/hero-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 115%;
+    height: 100%;
+  }     
+  
+  

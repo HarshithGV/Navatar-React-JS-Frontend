@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 function App() {
   const [remainingTime, setRemainingTime] = useState(null);
   const [bookingDate, setBookingDate] = useState(null);
+  const [booked_id, setBookedId] = useState('');
   const [bookedTimeSlot, setBookedTimeSlot] = useState(null);
 
   useEffect(() => {
@@ -12,6 +13,7 @@ function App() {
         const response = await fetch('https://navatar.sangamone.com/getBookedDetailByUserId?user_id=1');
         const data = await response.json();
         setBookingDate(data[0].bookingDate);
+        setBookedId(data[0].booked_id);
         setBookedTimeSlot(data[0].booked_timeSlot+":00:00");
       } catch (error) {
         console.log(error);
@@ -62,6 +64,7 @@ function App() {
       <div><h1> {remainingTime}</h1></div>
       <div><h5>Booking Date: {bookingDate}</h5></div>
       <div><h5>Booking Time: {bookedTimeSlot}</h5></div>
+      <h5>Booking id: {booked_id}</h5>
     </div>
   );
 }
