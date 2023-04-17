@@ -72,7 +72,7 @@ const RazorpayPaymentButton = () => {
   return (
     <>
       <button id="rzp-button1" onClick={handleClick}>Pay</button>
-     <Link to="/Timer"> <h1>{rz_payment_id}</h1></Link>
+     <Link to="/Agora"> <h1>{rz_payment_id}</h1></Link>
     </>
   );
 };

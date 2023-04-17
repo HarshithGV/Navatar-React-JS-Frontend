@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getUserId } from './Loginstore';
 
 function App() {
   const [remainingTime, setRemainingTime] = useState(null);
   const [bookingDate, setBookingDate] = useState(null);
   const [booked_id, setBookedId] = useState('');
   const [bookedTimeSlot, setBookedTimeSlot] = useState(null);
+  const userId = getUserId();
 
   useEffect(() => {
     const fetchBookingData = async () => {
       try {
-        const response = await fetch('https://navatar.sangamone.com/getBookedDetailByUserId?user_id=1');
+        const response = await fetch(`https://navatar.sangamone.com/getBookedDetailByUserId?user_id=${userId}`);
         const data = await response.json();
         setBookingDate(data[0].bookingDate);
         setBookedId(data[0].booked_id);
@@ -21,7 +23,7 @@ function App() {
       }
     };
     fetchBookingData();
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (!bookingDate || !bookedTimeSlot) return;

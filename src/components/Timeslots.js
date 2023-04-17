@@ -43,7 +43,7 @@ function Timeslots(props) {
       <h2>{options}</h2>
       <h3>{timer}</h3>
       
-      <Link to={`/Payment`}>
+      <Link to={`/Timer`}>
         <button style={{ borderRadius: "0.75rem" }} type="submit" disabled={!isOptionSelected}>
           Submit
         </button>

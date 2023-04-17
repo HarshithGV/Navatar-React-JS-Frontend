@@ -1,83 +1,100 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Appnavatar.css";
-import backgroundImage from './img/hero-bg.jpg';
+import { setUserId } from "./Loginstore";
+import { Link } from "react-router-dom";
+import { Navbar, Nav, Button } from "react-bootstrap";
 
 function LoginForm() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setIsValid(username && password);
-  }, [username, password]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Form submitted");
-    console.log("username: ", username);
+    console.log("email: ", email);
     console.log("password: ", password);
     try {
       const response = await axios.post(
-        "https://navatar.sangamone.com/DoctorLogin",
-        {
-          username: username,
-          password: password,
-        }
+        `https://navatar.sangamone.com/DoctorLogin?email=${email}&password=${password}`
       );
       console.log("response: ", response.data);
-      if (response.status === 200 && response.data.token) {
-        localStorage.setItem("token", response.data.token);
+      if (response.status === 200 && response.data.user_id) {
+        setUserId(response.data.user_id);
+        console.log(response.data.user_id);
         navigate("/Home");
       } else {
         navigate("/Home");
       }
     } catch (error) {
       console.error(error);
-      setErrorMessage("Invalid username or password.");
+      setErrorMessage("An error occurred while logging in.");
     }
   };
 
   return (
+    <>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="#home">Navatar</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto"></Nav>
+          <Button variant="outline-primary">Sign Up</Button>
+        </Navbar.Collapse>
+      </Navbar>
 
-<div>
-<div className="my-component">
-      
-    <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
-      {errorMessage && <div>{errorMessage}</div>}
-      <div>
-        <h1>Doctor Login</h1>
- 
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-          placeholder="Username"
-          required
-        />
+      <div className="my-component">
+        <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
+          {errorMessage && <div>{errorMessage}</div>}
+          <div>
+            <h1>Doctor Login</h1>
+            <input
+              style={{
+                padding: "8px 15px",
+                border: "2px solid gray",
+                borderRadius: "5px",
+              }}
+              type="text"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="Email"
+              required
+            />
+          </div>
+          <br />
+          <div>
+            <input
+              style={{
+                padding: "8px 15px",
+                border: "2px solid gray",
+                borderRadius: "5px",
+              }}
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Password"
+              required
+            />
+          </div>
+          <br />
+          <button type="submit" style={{ borderRadius: "1rem" }}>
+            Login
+          </button>
+        </form>
+        <br />
+        <div style={{ textAlign: "center" }}>
+          <Link to="/OTPgenerator">
+            {" "}
+            <h6>Forgot password</h6>
+          </Link>
+          <br />
+          {/* <h6>If you don't have any credentials to login <br/><Link to="/Regiteration"> Register here</Link></h6> */}
+        </div>
       </div>
-      <br></br>
-      <div>
-        
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="password"
-          required
-        />
-      </div>
-      <br></br>
-     <button style={{borderRadius: "1rem"}} to="/Home" type="submit" disabled={!isValid}>
-        Login
-      </button>
-   
-    </form>
-    </div>
-    </div>
+    </>
   );
 }
 

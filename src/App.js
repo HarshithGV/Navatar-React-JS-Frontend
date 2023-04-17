@@ -15,6 +15,12 @@ import Agora from "./components/Agora";
 import BookingList from "./components/BookingList";
 import Timer from "./components/Timer";
 import VideoRoom from "./components/VideoRoom";
+import Updatepassword from "./components/Updatepassword";
+import Registeration from "./components/Registeration";
+import Profile from "./components/Profile";
+import Forgotpassword from "./components/Forgotpassword";
+import OTPgenerator from "./components/OTPgenerator";
+import OTPverification from "./components/OTPverification";
 
 export default function App() {
   return (
@@ -36,6 +42,12 @@ export default function App() {
       <Route path="/bookinglist" element={<BookingList />}/>
       <Route path="/timer" element={<Timer />}/>
       <Route path="/videoRoom" element={<VideoRoom />}/>
+      <Route path="/updatepassword" element={<Updatepassword />}/>
+      <Route path="/regiteration" element={<Registeration />}/>
+      <Route path="/profile" element={<Profile />}/>
+      <Route path="/forgotpassword" element={<Forgotpassword />}/>
+      <Route path="/otpgenerator" element={<OTPgenerator />}/>
+      <Route path="/otpverification" element={<OTPverification/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import { getSelectedTime } from './selectedTime';
 import { getSelectedNavatar } from './selectedNavatar';
 import { getSelectedDate } from './selectedDate';
 import { Link } from "react-router-dom";
+import { getUserId } from './Loginstore';
 
 function BookingForm() {
   const selectedTime = getSelectedTime();
@@ -12,8 +13,8 @@ function BookingForm() {
   const [bookedTimeSlot, setBookedTimeSlot] = useState(selectedTime);
   const [bookingDate, setBookingDate] = useState(selectedDate);
   const [navatarId, setNavatarId] = useState(selectedNavatar);
-  const [userId, setUserId] = useState("1");
-
+  const userId = getUserId();
+  console.log(userId);
   const handleClick = () => {
     const url = `https://navatar.sangamone.com/setBooking?booked_status=${bookedStatus}&booked_timeSlot=${encodeURIComponent(bookedTimeSlot)}&bookingDate=${bookingDate}&navatar_id=${navatarId}&user_id=${userId}`;
 
@@ -45,9 +46,8 @@ function BookingForm() {
 
   return (
     <div style={{textAlign: "center"}}>
-
-    <h3>You have selected navatar_id: {navatarId}<br/>Your Booking Date: {bookingDate}<br/>Your Navatar Call Booked Time:{bookedTimeSlot}:00</h3>
-     <Link to="/Agora"> <button onClick={handleClick}>Next</button></Link>
+      <h3>You have selected navatar_id: {navatarId}<br/>Your Booking Date: {bookingDate}<br/>User ID: {userId}<br/>Your Navatar Call Booked Time: {bookedTimeSlot}:00</h3>
+      <Link to="/Payment"> <button onClick={handleClick}>Next</button></Link>
     </div>
   );
 }
