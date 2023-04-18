@@ -1,58 +1,61 @@
 import React, { useState } from 'react';
 
-function OtpGenerator() {
+function UpdatePassword() {
   const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [password, setPassword] = useState('');
+  const [success, setSuccess] = useState(false);
 
-  const [otpGenerated, setOtpGenerated] = useState(false);
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
 
-  const generateOtp = () => {
-    const url = `https://navatar.sangamone.com/generateOtp?email=${email}`;
-    fetch(url, {
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    fetch('https://navatar.sangamone.com/forgetPassword', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        setOtp(data.otp);
-        setOtpGenerated(true);
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
       })
-      .catch(error => console.error(error));
-  };
-
-  const resetPassword = () => {
-    const url = `https://navatar.sangamone.com/forgetPassword?email=${email}&otp=${otp}&password=${newPassword}`;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to update password.');
       }
     })
-      .then(response => response.json())
-      .then(data => setMessage(data.message))
-      .catch(error => console.error(error));
-  };
+    .then(data => {
+      console.log(data);
+      setSuccess(true);
+    })
+    .catch(error => console.error(error));
+  }
 
   return (
     <div>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <button onClick={generateOtp} disabled={!email}>
-        Generate OTP
-      </button>
-      {otpGenerated && (
-        <div>
-          <input type="text" value={otp} readOnly />
-          <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-          <button onClick={resetPassword}>Reset Password</button>
-          {message && <p>{message}</p>}
-        </div>
-      )}
+      {success && <p>Password updated successfully!</p>}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email:
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </label>
+        <label>
+          Password:
+          <input type="password" value={password} onChange={handlePasswordChange} />
+        </label>
+        <button type="submit">Update Password</button>
+      </form>
     </div>
   );
 }
 
-export default OtpGenerator;
+export default UpdatePassword;

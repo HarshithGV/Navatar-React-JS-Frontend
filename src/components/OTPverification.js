@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function VerifyOTP() {
   const [email, setEmail] = useState('');
   const [otpValue, setOTP] = useState('');
   const [result, setResult] = useState('');
+  const navigate = useNavigate(); // create navigate object
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,7 +26,13 @@ function VerifyOTP() {
 
     fetch(`https://navatar.sangamone.com/verifyOtp?email=${email}&otpValue=${otpValue}`, requestOptions)
       .then(response => response.json())
-      .then(data => setResult(data.message))
+      .then(data => {
+        setResult(data.message);
+        if (data.status === "success") {
+          // Move to UpdatePwd page
+          navigate('/Forgotpassword');
+        }
+      })
       .catch(error => console.error(error));
   }
 
