@@ -46,6 +46,7 @@ function LoginForm() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto"></Nav>
          <Link to="Updatepassword"> <Button style={{border:"1px solid #fff", background:"#2c4964", padding: "5px", fontSize: "14px"}}>Sign Up</Button></Link>
+         <Link to="https://navatar-end-agora-uikit.vercel.app/"> <Button style={{border:"1px solid #fff", background:"#2c4964", padding: "5px", fontSize: "14px", marginLeft:"1rem"}}>Navatar Login</Button></Link>
         </Navbar.Collapse>
       </Navbar>
       <section id="hero" class="align-items-left">
