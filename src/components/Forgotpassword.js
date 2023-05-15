@@ -1,61 +1,64 @@
 import React, { useState } from 'react';
 
-function UpdatePassword() {
+const ForgetPasswordForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState('');
 
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  function handlePasswordChange(event) {
-    setPassword(event.target.value);
-  }
+    const url = `https://navatar.sangamone.com/forgetPassword?email=${encodeURIComponent(
+      email
+    )}&password=${encodeURIComponent(password)}`;
 
-  function handleSubmit(event) {
-    event.preventDefault();
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-    fetch('https://navatar.sangamone.com/forgetPassword', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    })
-    .then(response => {
       if (response.ok) {
-        return response.json();
+        setMessage('Password reset email sent successfully.');
+        setEmail('');
+        setPassword('');
       } else {
-        throw new Error('Failed to update password.');
+        setMessage('Error sending password reset email.');
       }
-    })
-    .then(data => {
-      console.log(data);
-      setSuccess(true);
-    })
-    .catch(error => console.error(error));
-  }
+    } catch (error) {
+      setMessage('An error occurred. Please try again later.');
+    }
+  };
 
   return (
     <div>
-      {success && <p>Password updated successfully!</p>}
+      <h2>Forget Password</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} />
-        </label>
-        <button type="submit">Update Password</button>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Submit</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
-}
+};
 
-export default UpdatePassword;
+export default ForgetPasswordForm;

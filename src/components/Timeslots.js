@@ -28,7 +28,13 @@ function Timeslots(props) {
   };
 
   return (
+    
     <div style={{ textAlign: "center" }}>
+     <div  style={{textAlign:"right", marginRight:"1rem"}}>
+    <br/>
+     <Link to="/"> <button>LOG OUT</button></Link>
+      <br/>
+    </div>
       <br />
       <form>
         <select value={options} onChange={handleSelect} required>

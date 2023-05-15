@@ -33,6 +33,11 @@ function App() {
 
   return (
     <div className="App">
+     <div  style={{textAlign:"right", marginRight:"1rem"}}>
+    <br/>
+     <Link to="/"> <button>LOG OUT</button></Link>
+      <br/>
+    </div>
       <h1>Please Select Date</h1>
       <form onSubmit={handleSubmit}>
         <select onChange={handleSelect} required>
