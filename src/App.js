@@ -22,6 +22,10 @@ import Forgotpassword from "./components/Forgotpassword";
 import OTPgenerator from "./components/OTPgenerator";
 import OTPverification from "./components/OTPverification";
 import Aboutus from "./components/Aboutus";
+import Contactus from "./components/Contactus";
+import Privacypolicy from "./components/Privacypolicy";
+import TandC from "./components/TandC";
+import CancellationRefund from "./components/CancellationRefund";
 
 export default function App() {
   return (
@@ -50,6 +54,11 @@ export default function App() {
       <Route path="/otpgenerator" element={<OTPgenerator />}/>
       <Route path="/otpverification" element={<OTPverification/>}/>
       <Route path="/aboutus" element={<Aboutus/>}/>
+      <Route path="contactus" element={<Contactus/>}/>
+      <Route path="privacypolicy" element={<Privacypolicy/>}/>
+      <Route path="tandc" element={<TandC/>}/>
+      <Route path="cancellationrefund" element={<CancellationRefund/>}/>
+
         </Route>
       </Routes>
     </BrowserRouter>

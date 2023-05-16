@@ -57,6 +57,7 @@ function LoginForm() {
       <h1 style={{fontFamily:"Raleway, sans-serif"}}>Welcome to Navatar</h1>
       <h2>Please Login through the form using your credentials.</h2>
       <Link to="/Aboutus"> <a  class="btn-get-started scrollto">About Us</a></Link>
+      <Link to="/Contactus"> <a  class="btn-get-started scrollto">Contact Us</a></Link>
       </div>
       </div>
       <div class="col">
@@ -199,7 +200,8 @@ function LoginForm() {
     </div>
     <div class="credits">
       
-      Designed by <a href="https://bootstrapmade.com/">Privacy and policy</a>
+      Designed by <a href="/Privacypolicy">Privacy and policy</a><br></br><a href="/TandC">Terms and Conditions</a><br></br>
+      <a href="CancellationRefund">Cancellation/Refund</a>
     </div>
   </div>
   

@@ -313,3 +313,7 @@ h6 {
     text-align: justify;
     font-style:normal;
 }
+
+.aboutus li {
+    text-align: left;
+}
