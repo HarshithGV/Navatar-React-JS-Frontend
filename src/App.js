@@ -21,6 +21,7 @@ import Profile from "./components/Profile";
 import Forgotpassword from "./components/Forgotpassword";
 import OTPgenerator from "./components/OTPgenerator";
 import OTPverification from "./components/OTPverification";
+import Aboutus from "./components/Aboutus";
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
       <Route path="/forgotpassword" element={<Forgotpassword />}/>
       <Route path="/otpgenerator" element={<OTPgenerator />}/>
       <Route path="/otpverification" element={<OTPverification/>}/>
+      <Route path="/aboutus" element={<Aboutus/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

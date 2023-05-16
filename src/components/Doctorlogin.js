@@ -56,7 +56,7 @@ function LoginForm() {
     <div id="title">
       <h1 style={{fontFamily:"Raleway, sans-serif"}}>Welcome to Navatar</h1>
       <h2>Please Login through the form using your credentials.</h2>
-      <a href="#about" class="btn-get-started scrollto">About Us</a>
+      <Link to="/Aboutus"> <a  class="btn-get-started scrollto">About Us</a></Link>
       </div>
       </div>
       <div class="col">
