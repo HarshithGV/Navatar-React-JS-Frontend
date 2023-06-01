@@ -32,6 +32,7 @@ function App() {
     <div  style={{textAlign:"right", marginRight:"1rem"}}>
     <br/>
      <Link to="/"> <button>LOG OUT</button></Link>
+     <Link to="/Bookeddetails"> <button>Booked Details</button></Link>
       <br/>
     </div>
     <h1>Please Select City </h1>

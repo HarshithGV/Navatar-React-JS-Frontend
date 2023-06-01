@@ -26,6 +26,7 @@ import Contactus from "./components/Contactus";
 import Privacypolicy from "./components/Privacypolicy";
 import TandC from "./components/TandC";
 import CancellationRefund from "./components/CancellationRefund";
+import Bookeddetails from "./components/Bookeddetails";
 
 export default function App() {
   return (
@@ -58,6 +59,7 @@ export default function App() {
       <Route path="privacypolicy" element={<Privacypolicy/>}/>
       <Route path="tandc" element={<TandC/>}/>
       <Route path="cancellationrefund" element={<CancellationRefund/>}/>
+      <Route path="bookeddetails" element={<Bookeddetails/>}/>
 
         </Route>
       </Routes>
