@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {Outlet, Link} from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { setSelectedNavatar } from './selectedNavatar';
 
-function App() {
-   
+function App(props) {
+  const location = useLocation();
+  const [company_id, setInput1] = useState(new URLSearchParams(location.search).get("company_id"));
   const [values, setValues] = useState([]);
-  const [options, setOptions]= useState();
+  const [options, setOptions] = useState();
   const [isOptionSelected, setIsOptionSelected] = useState(false);
   const history = useNavigate();
- 
 
   useEffect(() => {
-    fetch("https://navatar.sangamone.com/viewNavatars").then((data) => data.json()).then((val) => setValues(val))
-  }, [])
-  console.log(values,"values")
+    fetch(`https://navatar.sangamone.com/ViewNavatarByCompanyId?company_id=${company_id}`)
+      .then((data) => data.json())
+      .then((val) => setValues(val));
+  }, []);
+
+  console.log(values, "values");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ function App() {
     // and then navigate to the next page using history.push()
     history.push("/Date");
   };
+
   const handleSelect = (e) => {
     setOptions(e.target.value);
     setIsOptionSelected(true);
@@ -30,27 +33,32 @@ function App() {
 
   return (
     <div className="App">
-     <div  style={{textAlign:"right", marginRight:"1rem"}}>
-    <br/>
-     <Link to="/"> <button>LOG OUT</button></Link>
-      <br/>
-    </div>
-    <h1>Please Select Navatar</h1>
-    <form onSubmit={handleSubmit}>
-    <select value={options} onChange={handleSelect} required>
-    <option>Choose Navatar</option>
-        {
-           
-            values.map((opts,i)=><option key={i} value={opts.navatar_id}>{opts.navatar_name}</option>)
-        }
-    </select>
-    <h1>{options}</h1>
-    <Link to="/Date"><button style={{borderRadius:"0.75rem"}} type="submit" disabled={!isOptionSelected}>Submit</button></Link>
-      
-      </form>
+      <div style={{ textAlign: "right", marginRight: "1rem" }}>
+        <br />
+        <Link to="/">
+          <button>LOG OUT</button>
+        </Link>
+        <br />
       </div>
+      <h1>Please Select Navatar</h1>
+      <form onSubmit={handleSubmit}>
+        <select value={options} onChange={handleSelect} required>
+          <option>Choose Navatar</option>
+          {values.map((opts, i) => (
+            <option key={i} value={opts.navatar_id}>
+              {opts.navatar_name}
+            </option>
+          ))}
+        </select>
+        <h1>{options}</h1>
+        <Link to="/Date">
+          <button style={{ borderRadius: "0.75rem" }} type="submit" disabled={!isOptionSelected}>
+            Submit
+          </button>
+        </Link>
+      </form>
+    </div>
   );
 }
 
-  
 export default App;

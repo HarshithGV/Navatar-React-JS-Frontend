@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [videoCall, setVideoCall] = useState(true);
+  const [videoCall, setVideoCall] = useState(false);
   const [booked_id, setBookedId] = useState('');
 
   const rtcProps = {
     appId: "c924bd6fb57b44b1809c0746b78875d8",
     channel: "Navatar",
     token:
-      "007eJxTYIixclF0utk2afm+P+/yoxbuEFZ8+rlqTtZc4yudd17uyeJTYEi2NDJJSjFLSzI1TzIxSTK0MLBMNjA3MUsyt7AwN02x+BCWntIQyMhwMnApKyMDBIL47Ax+iWWJJYlFDAwANPkiWA==",
+      "007eJxTYAjqd/kdGXd3xSGRXzdPfpx+ZXVEntnqfY7zgkQy29VMmisUGJItjUySUszSkkzNk0xMkgwtDCyTDcxNzJLMLSzMTVMsciUqUhoCGRmib7gwMTJAIIjPzuCXWJZYkljEwAAACnsg0A==",
   };
   
   const callbacks = {

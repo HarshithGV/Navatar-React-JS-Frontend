@@ -18,10 +18,13 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit the data using an API call or store it in a state
-    // and then navigate to the next page using history.push()
-    history.push("/Navatar");
+    const company_id = options || values[0]; // if options is not selected, use the first date in values array
+    history.push({
+      pathname: "/Navatar",
+      state: { company_id: company_id },
+    });
   };
+ 
   const handleSelect = (e) => {
     setOptions(e.target.value);
     setIsOptionSelected(true);
@@ -44,7 +47,11 @@ function App() {
         }
     </select>
     <h1>{options}</h1>
-    <Link to="/Navatar"><button style={{borderRadius:"0.75rem"}} type="submit" >Submit</button></Link>
+    <Link to={{pathname: "/Navatar", search: `?company_id=${options}`}}>
+  <button style={{borderRadius:"0.75rem"}} type="submit" disabled={!isOptionSelected}>
+    Submit
+  </button>
+</Link>
     </form>
       </div>
   );
